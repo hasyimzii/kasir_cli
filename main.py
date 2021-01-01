@@ -3,37 +3,41 @@ import os
 from Manager import Manager
 from Sembako import Sembako
 
-#connection & cursor database
+# connection & cursor database
 connection = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="pbo_sembako"
+    host="localhost",
+    user="root",
+    password="",
+    database="pbo_sembako"
 )
 curs = connection.cursor()
+
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def login() :
+
+def login():
     print("Login")
     username = str(input("Masukkan Username : "))
     password = str(input("Masukkan Password : "))
 
-    query = "select idUser, jabatan from user where username = '{}' and password = '{}'".format(username,password)
-    curs.execute(query)   
+    query = "select idUser, jabatan from user where username = '{}' and password = '{}'".format(
+        username, password)
+    curs.execute(query)
     data = curs.fetchall()
 
-    try :
+    try:
         clear()
         return data[0]
-    except :
+    except:
         clear()
         print("username atau password yang anda masukan salah")
 
-def main() :
+
+def main():
     id = login()
-    if(id[1] == "manager") :
+    if(id[1] == "manager"):
         print("[1] lihat data sembako")
         print("[2] tambah data sembako")
         print("[3] ubah data sembako")
@@ -48,9 +52,9 @@ def main() :
         clear()
 
         sembako = Sembako()
-        if masukan == 1 :
+        if masukan == 1:
             sembako.lihatSembako()
-        elif masukan == 2 :
+        elif masukan == 2:
             sembako.tambahSembako()
         # elif masukan == 3 :
         # elif masukan == 4 :
@@ -58,10 +62,12 @@ def main() :
         # elif masukan == 6 :
         # elif masukan == 7 :
         # elif masukan == 8 :
-        elif masukan == 0 :
+        elif masukan == 0:
             clear()
 
-    elif(id[1] == "petugas kasir") :
+    elif(id[1] == "petugas kasir"):
         print("kasir")
     return False
+
+
 main()
