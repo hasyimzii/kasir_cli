@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2021 at 07:33 PM
+-- Generation Time: Jan 01, 2021 at 09:58 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -34,6 +34,17 @@ CREATE TABLE `order_transaksi` (
   `idSembako` int(11) NOT NULL,
   `jumlahSembako` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_transaksi`
+--
+
+INSERT INTO `order_transaksi` (`idOrder`, `idTransaksi`, `idSembako`, `jumlahSembako`) VALUES
+(4, 6, 1, 6),
+(11, 17, 1, 5),
+(12, 17, 3, 7),
+(14, 19, 1, 5),
+(15, 19, 3, 7);
 
 -- --------------------------------------------------------
 
@@ -87,6 +98,16 @@ CREATE TABLE `transaksi` (
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`idTransaksi`, `tanggal`, `idUser`) VALUES
+(6, '2021-01-02 02:11:51', 8),
+(17, '2021-01-02 03:52:21', 8),
+(19, '2021-01-02 03:54:37', 8),
+(20, '2021-01-02 03:55:17', 8);
+
 -- --------------------------------------------------------
 
 --
@@ -100,6 +121,14 @@ CREATE TABLE `user` (
   `jabatan` enum('manager','petugas kasir') NOT NULL,
   `idToko` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`idUser`, `username`, `password`, `jabatan`, `idToko`) VALUES
+(7, 'manager', '123123', 'manager', 1),
+(8, 'kasir', '123123', 'petugas kasir', 1);
 
 --
 -- Indexes for dumped tables
@@ -147,7 +176,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_transaksi`
 --
 ALTER TABLE `order_transaksi`
-  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `sembako`
@@ -165,13 +194,13 @@ ALTER TABLE `toko`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `idTransaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTransaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

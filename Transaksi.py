@@ -1,6 +1,5 @@
 import mysql.connector
 import os
-from Order import Order
 from datetime import datetime
 
 # connection & cursor database
@@ -26,25 +25,12 @@ class Transaksi :
         print("lihat transaksi")
         query = "select * from transaksi"
         curs.execute(query)
-        user = curs.fetchall()
+        transaksi = curs.fetchall()
 
-        print("| id | tanggal | id user | id toko |")
-        for i in user:
-            print(i)
-
+        print("| id | tanggal | waktu | id user |")
+        for i in transaksi:
+            print("("+ str(i[0]) +", "+ str(i[1].strftime("%d/%m/%Y, %H:%M:%S")) +", "+ str(i[2]) +")")
         input()
-        print("[1] lihat detail transaksi")
-        print("[2] kembali")
-        menu = int(input("Masukkan pilihan>"))
-
-        order = Order
-        if menu == 1:
-            idTransaksi = int(input("id transaksi : "))
-            order.lihat("lihat", idTransaksi)
-        elif menu == 2:
-            pass
-        input()
-        clear()
 
     def tambah(self, idKasir):
         print("tambah transaksi")
@@ -54,11 +40,3 @@ class Transaksi :
         query = "insert into transaksi values(Null,'{}','{}')".format(tanggal, idUser)
         curs.execute(query)
         conn.commit()
-
-        idTransaksi = "select idTransaksi from transaksi order by id desc limit 1"
-        order = Order
-        order.tambah("tambah", idTransaksi)
-
-        print("Berhasil Menambah")
-        input()
-        clear()

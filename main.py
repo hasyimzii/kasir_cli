@@ -5,6 +5,7 @@ from Manager import Manager
 from PetugasKasir import PetugasKasir
 from Toko import Toko
 from Transaksi import Transaksi
+from Order import Order
 
 # connection & cursor database
 conn = mysql.connector.connect(
@@ -89,10 +90,29 @@ def main():
             clear()
 
             transaksi = Transaksi
+            order = Order
             if menu == 1:
                 transaksi.lihat("lihat")
+
+                print("[1] lihat detail transaksi")
+                print("[2] kembali")
+                menu = int(input("Masukkan pilihan>"))
+
+                if menu == 1:
+                    idTransaksi = int(input("id transaksi : "))
+                    order.lihat("lihat", idTransaksi)
+                elif menu == 2:
+                    clear()
+            
             elif menu == 2:
                 transaksi.tambah("tambah", id[0])
+
+                query = "select idTransaksi from transaksi order by idTransaksi desc limit 1"
+                curs.execute(query)
+                idTransaksi = curs.fetchall()
+                order.tambah("tambah", idTransaksi[0][0])
+                order.lihat("lihat", idTransaksi[0][0])
+
             elif menu == 0:
                 main()
             else:
