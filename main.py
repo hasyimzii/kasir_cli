@@ -60,9 +60,9 @@ def main():
             elif menu == 2 :
                 return sembako.tambah("tambah")
             elif menu == 3 :
-                return sembako.ubah()
+                return sembako.ubah("ubah")
             elif menu == 4 :
-                return sembako.hapus()
+                return sembako.hapus("hapus")
             elif menu == 5 :
                 return kasir.lihat("lihat")
             elif menu == 6 :
@@ -88,26 +88,26 @@ def main():
             menu = input("Masukkan pilihan>")
             clear()
 
-            # sembako = Sembako
-            # kasir = PetugasKasir
-            # if menu == 1 :
-            #     return sembako.lihat("lihat")
-            # elif menu == 2 :
-            #     return sembako.tambah()
-            # elif menu == 3 :
-            #     return sembako.ubah()
-            # elif menu == 4 :
-            #     return sembako.hapus()
-            # elif menu == 5 :
-            #     return kasir.lihat("lihat")
-            # elif menu == 6 :
-            #     return kasir.tambah()
-            # elif menu == 7 :
-            #     return kasir.hapus()
-            # elif menu == 0 :
-            #     break
-            # else :
-            #     print("==input tidak valid!==")
+            sembako = Sembako
+            kasir = PetugasKasir
+            if menu == 1 :
+                return sembako.lihat("lihat")
+            elif menu == 2 :
+                return sembako.tambah()
+            elif menu == 3 :
+                return sembako.ubah()
+            elif menu == 4 :
+                return sembako.hapus()
+            elif menu == 5 :
+                return kasir.lihat("lihat")
+            elif menu == 6 :
+                return kasir.tambah()
+            elif menu == 7 :
+                return kasir.hapus()
+            elif menu == 0 :
+                break
+            else :
+                print("==input tidak valid!==")
 
     elif(id == "pemilik") :
         while True:

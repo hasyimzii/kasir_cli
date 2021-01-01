@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2021 at 03:04 PM
+-- Generation Time: Jan 01, 2021 at 05:10 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -25,29 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_sembako`
---
-
-CREATE TABLE `jenis_sembako` (
-  `idJenis` int(11) NOT NULL,
-  `jenis` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kota`
---
-
-CREATE TABLE `kota` (
-  `idKota` int(11) NOT NULL,
-  `idProvinsi` int(11) NOT NULL,
-  `kota` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `order_transaksi`
 --
 
@@ -60,27 +37,23 @@ CREATE TABLE `order_transaksi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinsi`
---
-
-CREATE TABLE `provinsi` (
-  `idProvinsi` int(11) NOT NULL,
-  `provinsi` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sembako`
 --
 
 CREATE TABLE `sembako` (
   `idSembako` int(11) NOT NULL,
-  `idJenis` int(11) NOT NULL,
+  `jenis` varchar(20) NOT NULL,
   `merk` varchar(20) NOT NULL,
   `harga` int(7) NOT NULL,
   `stok` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sembako`
+--
+
+INSERT INTO `sembako` (`idSembako`, `jenis`, `merk`, `harga`, `stok`) VALUES
+(1, 'beras', 'ambon', 10000, 5);
 
 -- --------------------------------------------------------
 
@@ -90,8 +63,7 @@ CREATE TABLE `sembako` (
 
 CREATE TABLE `toko` (
   `idToko` int(11) NOT NULL,
-  `alamat` varchar(30) NOT NULL,
-  `idKota` int(11) NOT NULL
+  `alamat` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -134,19 +106,6 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `jabatan`) VALUES
 --
 
 --
--- Indexes for table `jenis_sembako`
---
-ALTER TABLE `jenis_sembako`
-  ADD PRIMARY KEY (`idJenis`);
-
---
--- Indexes for table `kota`
---
-ALTER TABLE `kota`
-  ADD PRIMARY KEY (`idKota`),
-  ADD KEY `kota-provinsi` (`idProvinsi`);
-
---
 -- Indexes for table `order_transaksi`
 --
 ALTER TABLE `order_transaksi`
@@ -154,24 +113,16 @@ ALTER TABLE `order_transaksi`
   ADD KEY `order-sembako` (`idSembako`);
 
 --
--- Indexes for table `provinsi`
---
-ALTER TABLE `provinsi`
-  ADD PRIMARY KEY (`idProvinsi`);
-
---
 -- Indexes for table `sembako`
 --
 ALTER TABLE `sembako`
-  ADD PRIMARY KEY (`idSembako`),
-  ADD KEY `sembako-jenis` (`idJenis`);
+  ADD PRIMARY KEY (`idSembako`);
 
 --
 -- Indexes for table `toko`
 --
 ALTER TABLE `toko`
-  ADD PRIMARY KEY (`idToko`),
-  ADD KEY `toko-kota` (`idKota`);
+  ADD PRIMARY KEY (`idToko`);
 
 --
 -- Indexes for table `transaksi`
@@ -193,34 +144,16 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `jenis_sembako`
---
-ALTER TABLE `jenis_sembako`
-  MODIFY `idJenis` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kota`
---
-ALTER TABLE `kota`
-  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `order_transaksi`
 --
 ALTER TABLE `order_transaksi`
   MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `provinsi`
---
-ALTER TABLE `provinsi`
-  MODIFY `idProvinsi` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `sembako`
 --
 ALTER TABLE `sembako`
-  MODIFY `idSembako` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSembako` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `toko`
@@ -245,28 +178,10 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `kota`
---
-ALTER TABLE `kota`
-  ADD CONSTRAINT `kota-provinsi` FOREIGN KEY (`idProvinsi`) REFERENCES `provinsi` (`idProvinsi`);
-
---
 -- Constraints for table `order_transaksi`
 --
 ALTER TABLE `order_transaksi`
   ADD CONSTRAINT `order-sembako` FOREIGN KEY (`idSembako`) REFERENCES `sembako` (`idSembako`);
-
---
--- Constraints for table `sembako`
---
-ALTER TABLE `sembako`
-  ADD CONSTRAINT `sembako-jenis` FOREIGN KEY (`idJenis`) REFERENCES `jenis_sembako` (`idJenis`);
-
---
--- Constraints for table `toko`
---
-ALTER TABLE `toko`
-  ADD CONSTRAINT `toko-kota` FOREIGN KEY (`idKota`) REFERENCES `kota` (`idKota`);
 
 --
 -- Constraints for table `transaksi`
