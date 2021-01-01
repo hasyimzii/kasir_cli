@@ -1,18 +1,16 @@
 import mysql.connector
 import os
-from Manager import Manager
-from PetugasKasir import PetugasKasir
-from Toko import Toko
 from Sembako import Sembako
 
 # connection & cursor database
-connection = mysql.connector.connect(
+conn = mysql.connector.connect(
     host="localhost",
+    port=3306,
     user="root",
     password="",
     database="pbo_sembako"
 )
-curs = connection.cursor()
+curs = conn.cursor()
 
 
 def clear():
@@ -29,14 +27,6 @@ def login():
     curs.execute(query)
     data = curs.fetchall()
 
-<<<<<<< Updated upstream
-    try:
-        clear()
-        return data[0]
-    except:
-        clear()
-        print("username atau password yang anda masukan salah")
-=======
     if(username == "pemilik" and password == "123213") :
         return "pemilik"
     else :
@@ -45,47 +35,10 @@ def login():
             return data[0]
         except :
             print("username atau password yang anda masukan salah")
->>>>>>> Stashed changes
 
 
 def main():
     id = login()
-<<<<<<< Updated upstream
-    if(id[1] == "manager"):
-        print("[1] lihat data sembako")
-        print("[2] tambah data sembako")
-        print("[3] ubah data sembako")
-        print("[4] hapus data sembako")
-        print("[5] lihat data kasir")
-        print("[6] tambah data kasir")
-        print("[7] ubah data kasir")
-        print("[8] hapus data kasir")
-        print("[0] keluar")
-
-        masukan = input("Masukkan pilihan >")
-        clear()
-
-        sembako = Sembako()
-        if masukan == 1:
-            sembako.lihatSembako()
-        elif masukan == 2:
-            sembako.tambahSembako()
-        # elif masukan == 3 :
-        # elif masukan == 4 :
-        # elif masukan == 5 :
-        # elif masukan == 6 :
-        # elif masukan == 7 :
-        # elif masukan == 8 :
-        elif masukan == 0:
-            clear()
-
-    elif(id[1] == "petugas kasir"):
-        print("kasir")
-    return False
-
-
-main()
-=======
     if(id[1] == "manager") :
         while True:
             print("[1] lihat data sembako")
@@ -97,21 +50,21 @@ main()
             print("[7] hapus data kasir")
             print("[0] keluar")
 
-            menu = input("Masukkan pilihan>")
+            menu = int(input("Masukkan pilihan>"))
             clear()
 
             sembako = Sembako
             kasir = PetugasKasir
             if menu == 1 :
-                return sembako.lihat()
+                return sembako.lihat("lihat")
             elif menu == 2 :
-                return sembako.tambah()
+                return sembako.tambah("tambah")
             elif menu == 3 :
                 return sembako.ubah()
             elif menu == 4 :
                 return sembako.hapus()
             elif menu == 5 :
-                return kasir.lihat()
+                return kasir.lihat("lihat")
             elif menu == 6 :
                 return kasir.tambah()
             elif menu == 7 :
@@ -135,26 +88,26 @@ main()
             menu = input("Masukkan pilihan>")
             clear()
 
-            sembako = Sembako
-            kasir = PetugasKasir
-            if menu == 1 :
-                return sembako.lihat()
-            elif menu == 2 :
-                return sembako.tambah()
-            elif menu == 3 :
-                return sembako.ubah()
-            elif menu == 4 :
-                return sembako.hapus()
-            elif menu == 5 :
-                return kasir.lihat()
-            elif menu == 6 :
-                return kasir.tambah()
-            elif menu == 7 :
-                return kasir.hapus()
-            elif menu == 0 :
-                break
-            else :
-                print("==input tidak valid!==")
+            # sembako = Sembako
+            # kasir = PetugasKasir
+            # if menu == 1 :
+            #     return sembako.lihat("lihat")
+            # elif menu == 2 :
+            #     return sembako.tambah()
+            # elif menu == 3 :
+            #     return sembako.ubah()
+            # elif menu == 4 :
+            #     return sembako.hapus()
+            # elif menu == 5 :
+            #     return kasir.lihat("lihat")
+            # elif menu == 6 :
+            #     return kasir.tambah()
+            # elif menu == 7 :
+            #     return kasir.hapus()
+            # elif menu == 0 :
+            #     break
+            # else :
+            #     print("==input tidak valid!==")
 
     elif(id == "pemilik") :
         while True:
@@ -173,7 +126,7 @@ main()
             toko = Toko
             manager = Manager
             if menu == 1 :
-                return toko.lihat()
+                return toko.lihat("lihat")
             elif menu == 2 :
                 return toko.tambah()
             elif menu == 3 :
@@ -181,7 +134,7 @@ main()
             elif menu == 4 :
                 return toko.hapus()
             elif menu == 5 :
-                return manager.lihat()
+                return manager.lihat("lihat")
             elif menu == 6 :
                 return manager.tambah()
             elif menu == 7 :
@@ -193,4 +146,3 @@ main()
     return False
 
 main()
->>>>>>> Stashed changes

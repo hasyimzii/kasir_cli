@@ -1,14 +1,14 @@
 import mysql.connector
 
 # connection & cursor database
-connection = mysql.connector.connect(
+conn = mysql.connector.connect(
     host="localhost",
+    port=3306,
     user="root",
     password="",
     database="pbo_sembako"
 )
-curs = connection.cursor()
-
+curs = conn.cursor()
 
 class Sembako:
     def __init__(self):
@@ -28,17 +28,9 @@ class Sembako:
         harga = str(input("harga : "))
         stok = str(input("stok : "))
 
-        query = "insert into jenis_sembako values('','{}')".format(jenis)
+        query = "insert into sembako values(Null,'{}','{}','{}','{}')".format(jenis, merk, harga, stok)
         curs.execute(query)
-        curs.commit()
-
-        idJenis = "select idJenis from jenis_sembako where jenis = '{}'".format(
-            jenis)
-
-        query1 = "insert into sembako values('','{}','{}','{}','{}')".format(
-            idJenis, merk, harga, stok)
-        curs.execute(query1)
-        curs.commit()
+        conn.commit()
         print("Berhasil!")
 
     def hapus(self):
@@ -46,6 +38,6 @@ class Sembako:
         idSembako = input("ID Sembako : ")
 
         query = "delete from sembako where idSembako = {}".format(idSembako)
-        cursor.execute(query)
+        curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")

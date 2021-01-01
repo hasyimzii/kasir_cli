@@ -1,14 +1,14 @@
 import mysql.connector
 
 # connection & cursor database
-connection = mysql.connector.connect(
+conn = mysql.connector.connect(
     host="localhost",
+    port=3306,
     user="root",
     password="",
     database="pbo_sembako"
 )
-curs = connection.cursor()
-
+curs = conn.cursor()
 
 class Toko:
     def __init__(self):
@@ -18,7 +18,7 @@ class Toko:
         print("lihat toko")
         query = "select * from toko"
         curs.execute(query)
-        Toko = curs.fetchall()
+        toko = curs.fetchall()
         for i in toko:
             print(i)
 
@@ -36,6 +36,6 @@ class Toko:
         idToko = input("ID Toko : ")
 
         query = "delete from toko where idToko = {}".format(idToko)
-        cursor.execute(query)
-        conn.commit()
+        curs.execute(query)
+        curs.commit()
         print("Berhasil Menghapus")

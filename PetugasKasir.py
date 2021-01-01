@@ -9,8 +9,7 @@ connection = mysql.connector.connect(
 )
 curs = connection.cursor()
 
-
-class PetugasKasir:
+class PetugasKasir(User):
     def __init__(self):
         pass
 
@@ -38,6 +37,6 @@ class PetugasKasir:
         username = str(input("username : "))
 
         query = "delete from user where username = {}".format(username)
-        cursor.execute(query)
-        conn.commit()
+        curs.execute(query)
+        curs.commit()
         print("Berhasil Menghapus")

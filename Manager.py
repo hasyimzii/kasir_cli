@@ -9,11 +9,7 @@ connection = mysql.connector.connect(
 )
 curs = connection.cursor()
 
-
-class Manager:
-    def __init__(self):
-        pass
-
+class Manager(User):
     def lihat(self):
         print("lihat manager")
         query = "select * from user where jabatan = 'manager'"
@@ -38,6 +34,6 @@ class Manager:
         username = str(input("username : "))
 
         query = "delete from user where username = {}".format(username)
-        cursor.execute(query)
-        conn.commit()
+        curs.execute(query)
+        curs.commit()
         print("Berhasil Menghapus")
