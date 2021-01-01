@@ -30,7 +30,8 @@ def login():
     curs.execute(query)
     data = curs.fetchall()
 
-    if(username == "pemilik" and password == "123213"):
+    if(username == "pemilik" and password == "123123"):
+        clear()
         return "pemilik"
     else:
         try:
@@ -88,7 +89,7 @@ def main():
             print("[7] hapus data kasir")
             print("[0] keluar")
 
-            menu = input("Masukkan pilihan>")
+            menu = int(input("Masukkan pilihan>"))
             clear()
 
             sembako = Sembako
@@ -116,14 +117,13 @@ def main():
         while True:
             print("[1] lihat data toko")
             print("[2] tambah data toko")
-            print("[3] ubah data toko")
-            print("[4] hapus data toko")
-            print("[5] lihat data manager")
-            print("[6] tambah data manager")
-            print("[7] hapus data manager")
+            print("[3] hapus data toko")
+            print("[4] lihat data manager")
+            print("[5] tambah data manager")
+            print("[6] hapus data manager")
             print("[0] keluar")
 
-            menu = input("Masukkan pilihan>")
+            menu = int(input("Masukkan pilihan>"))
             clear()
 
             toko = Toko
@@ -133,14 +133,12 @@ def main():
             elif menu == 2:
                 toko.tambah("tambah")
             elif menu == 3:
-                toko.ubah("ubah")
-            elif menu == 4:
                 toko.hapus("hapus")
-            elif menu == 5:
+            elif menu == 4:
                 manager.lihat("lihat")
-            elif menu == 6:
+            elif menu == 5:
                 manager.tambah("tambah")
-            elif menu == 7:
+            elif menu == 6:
                 manager.hapus("hapus")
             elif menu == 0:
                 main()

@@ -27,26 +27,31 @@ class PetugasKasir(User):
         curs.execute(query)
         user = curs.fetchall()
 
-        print("| id | username | password ")
+        print("| id | username | password |")
         for i in user:
             print(i)
+        input()
+        clear()
 
     def tambah(self):
         print("tambah kasir")
         username = str(input("username : "))
         password = str(input("password : "))
 
-        query = "insert into user values('','{}','{}','petugas kasir')".format(
-            username, password)
+        query = "insert into user values('','{}','{}','petugas kasir')".format(username, password)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menambah")
+        input()
+        clear()
 
     def hapus(self):
         print("hapus kasir")
-        username = str(input("username : "))
+        idUser = str(input("id petugas kasir : "))
 
-        query = "delete from user where username = {}".format(username)
+        query = "delete from user where idUser = {}".format(idUser)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")
+        input()
+        clear()

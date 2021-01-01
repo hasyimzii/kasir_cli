@@ -30,6 +30,8 @@ class Manager(User):
         print("| id | username | password |")
         for i in user:
             print(i)
+        input()
+        clear()
 
     def tambah(self):
         print("tambah manager")
@@ -41,12 +43,16 @@ class Manager(User):
         curs.execute(query)
         conn.commit()
         print("Berhasil Menambah")
+        input()
+        clear()
 
     def hapus(self):
         print("hapus Manager")
-        username = str(input("username : "))
+        idUser = str(input("id petugas manager : "))
 
-        query = "delete from user where username = {}".format(username)
+        query = "delete from user where idUser = {}".format(idUser)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")
+        input()
+        clear()

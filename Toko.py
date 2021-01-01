@@ -29,6 +29,8 @@ class Toko:
         print("| id | alamat |")
         for i in toko:
             print(i)
+        input()
+        clear()
 
     def tambah(self):
         print("tambah toko")
@@ -38,12 +40,16 @@ class Toko:
         curs.execute(query)
         conn.commit()
         print("Berhasil Menambah")
+        input()
+        clear()
 
     def hapus(self):
         print("hapus toko")
-        idToko = input("ID Toko : ")
+        idToko = input("id Toko : ")
 
         query = "delete from toko where idToko = {}".format(idToko)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")
+        input()
+        clear()

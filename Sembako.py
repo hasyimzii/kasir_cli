@@ -74,7 +74,7 @@ class Sembako:
 
     def hapus(self):
         print("hapus sembako")
-        idSembako = input("ID Sembako : ")
+        idSembako = input("id Sembako : ")
 
         query = "delete from sembako where idSembako = {}".format(idSembako)
         curs.execute(query)
