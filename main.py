@@ -1,6 +1,9 @@
 import mysql.connector
 import os
 from Sembako import Sembako
+from Manager import Manager
+from PetugasKasir import PetugasKasir
+from Toko import Toko
 
 # connection & cursor database
 conn = mysql.connector.connect(
@@ -27,19 +30,19 @@ def login():
     curs.execute(query)
     data = curs.fetchall()
 
-    if(username == "pemilik" and password == "123213") :
+    if(username == "pemilik" and password == "123213"):
         return "pemilik"
-    else :
-        try :
+    else:
+        try:
             clear()
             return data[0]
-        except :
+        except:
             print("username atau password yang anda masukan salah")
 
 
 def main():
     id = login()
-    if(id[1] == "manager") :
+    if(id[1] == "manager"):
         while True:
             print("[1] lihat data sembako")
             print("[2] tambah data sembako")
@@ -55,26 +58,26 @@ def main():
 
             sembako = Sembako
             kasir = PetugasKasir
-            if menu == 1 :
+            if menu == 1:
                 return sembako.lihat("lihat")
-            elif menu == 2 :
+            elif menu == 2:
                 return sembako.tambah("tambah")
-            elif menu == 3 :
+            elif menu == 3:
                 return sembako.ubah("ubah")
-            elif menu == 4 :
+            elif menu == 4:
                 return sembako.hapus("hapus")
-            elif menu == 5 :
+            elif menu == 5:
                 return kasir.lihat("lihat")
-            elif menu == 6 :
-                return kasir.tambah()
-            elif menu == 7 :
-                return kasir.hapus()
-            elif menu == 0 :
+            elif menu == 6:
+                return kasir.tambah("tambah")
+            elif menu == 7:
+                return kasir.hapus("hapus")
+            elif menu == 0:
                 break
-            else :
+            else:
                 print("==input tidak valid!==")
 
-    elif(id[1] == "petugas kasir") :
+    elif(id[1] == "petugas kasir"):
         while True:
             print("[1] lihat data sembako")
             print("[2] tambah data sembako")
@@ -90,26 +93,26 @@ def main():
 
             sembako = Sembako
             kasir = PetugasKasir
-            if menu == 1 :
+            if menu == 1:
                 return sembako.lihat("lihat")
-            elif menu == 2 :
-                return sembako.tambah()
-            elif menu == 3 :
-                return sembako.ubah()
-            elif menu == 4 :
-                return sembako.hapus()
-            elif menu == 5 :
+            elif menu == 2:
+                return sembako.tambah("tambah")
+            elif menu == 3:
+                return sembako.ubah("ubah")
+            elif menu == 4:
+                return sembako.hapus("hapus")
+            elif menu == 5:
                 return kasir.lihat("lihat")
-            elif menu == 6 :
-                return kasir.tambah()
-            elif menu == 7 :
-                return kasir.hapus()
-            elif menu == 0 :
+            elif menu == 6:
+                return kasir.tambah("tambah")
+            elif menu == 7:
+                return kasir.hapus("hapus")
+            elif menu == 0:
                 break
-            else :
+            else:
                 print("==input tidak valid!==")
 
-    elif(id == "pemilik") :
+    elif(id == "pemilik"):
         while True:
             print("[1] lihat data toko")
             print("[2] tambah data toko")
@@ -125,24 +128,25 @@ def main():
 
             toko = Toko
             manager = Manager
-            if menu == 1 :
+            if menu == 1:
                 return toko.lihat("lihat")
-            elif menu == 2 :
-                return toko.tambah()
-            elif menu == 3 :
-                return toko.ubah()
-            elif menu == 4 :
-                return toko.hapus()
-            elif menu == 5 :
+            elif menu == 2:
+                return toko.tambah("tambah")
+            elif menu == 3:
+                return toko.ubah("ubah")
+            elif menu == 4:
+                return toko.hapus("hapus")
+            elif menu == 5:
                 return manager.lihat("lihat")
-            elif menu == 6 :
-                return manager.tambah()
-            elif menu == 7 :
-                return manager.hapus()
-            elif menu == 0 :
+            elif menu == 6:
+                return manager.tambah("tambah")
+            elif menu == 7:
+                return manager.hapus("hapus")
+            elif menu == 0:
                 break
-            else :
+            else:
                 print("==input tidak valid!==")
     return False
+
 
 main()

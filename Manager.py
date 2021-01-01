@@ -1,4 +1,5 @@
 import mysql.connector
+from User import User
 
 # connection & cursor database
 conn = mysql.connector.connect(

@@ -23,7 +23,7 @@ class Sembako:
             print(i)
 
     def tambah(self):
-        print("tambah data sembako")
+        print("tambah sembako")
         jenis = str(input("jenis : "))
         merk = str(input("merk : "))
         harga = str(input("harga : "))
@@ -36,10 +36,13 @@ class Sembako:
         print("Berhasil!")
 
     def hapus(self):
-        print("hapus toko")
+        print("hapus sembako")
         idSembako = input("ID Sembako : ")
 
         query = "delete from sembako where idSembako = {}".format(idSembako)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")
+
+    def ubah(self):
+        print("ubah sembako")
