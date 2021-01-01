@@ -12,8 +12,10 @@ conn = mysql.connector.connect(
 )
 curs = conn.cursor()
 
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 class PetugasKasir(User):
     def __init__(self):

@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 # connection & cursor database
 conn = mysql.connector.connect(
@@ -9,6 +10,10 @@ conn = mysql.connector.connect(
     database="pbo_sembako"
 )
 curs = conn.cursor()
+
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 class Toko:

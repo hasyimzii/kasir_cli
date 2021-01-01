@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 from User import User
 
 # connection & cursor database
@@ -10,6 +11,10 @@ conn = mysql.connector.connect(
     database="pbo_sembako"
 )
 curs = conn.cursor()
+
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 class Manager(User):

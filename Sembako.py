@@ -11,8 +11,10 @@ conn = mysql.connector.connect(
 )
 curs = conn.cursor()
 
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 class Sembako:
     def __init__(self):
@@ -47,7 +49,8 @@ class Sembako:
     def ubah(self):
         print("ubah sembako")
         idSembako = input("id sembako yang mau diubah : ")
-        query = "select * from sembako where idSembako = '{}'".format(idSembako)
+        query = "select * from sembako where idSembako = '{}'".format(
+            idSembako)
         curs.execute(query)
         sembako = curs.fetchall()
 
@@ -61,7 +64,8 @@ class Sembako:
         harga = input("harga baru : ")
         stok = input("stok baru : ")
 
-        query1 = "update sembako set harga = '{}', stok = '{}' where idSembako = '{}'".format(harga, stok, idSembako)
+        query1 = "update sembako set harga = '{}', stok = '{}' where idSembako = '{}'".format(
+            harga, stok, idSembako)
         curs.execute(query1)
         conn.commit()
         print("Berhasil Mengubah")
@@ -78,4 +82,3 @@ class Sembako:
         print("Berhasil Menghapus")
         input()
         clear()
-
