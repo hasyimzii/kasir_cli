@@ -59,21 +59,21 @@ def main():
             sembako = Sembako
             kasir = PetugasKasir
             if menu == 1:
-                return sembako.lihat("lihat")
+                sembako.lihat("lihat")
             elif menu == 2:
-                return sembako.tambah("tambah")
+                sembako.tambah("tambah")
             elif menu == 3:
-                return sembako.ubah("ubah")
+                sembako.ubah("ubah")
             elif menu == 4:
-                return sembako.hapus("hapus")
+                sembako.hapus("hapus")
             elif menu == 5:
-                return kasir.lihat("lihat")
+                kasir.lihat("lihat")
             elif menu == 6:
-                return kasir.tambah("tambah")
+                kasir.tambah("tambah")
             elif menu == 7:
-                return kasir.hapus("hapus")
+                kasir.hapus("hapus")
             elif menu == 0:
-                break
+                main()
             else:
                 print("==input tidak valid!==")
 
@@ -94,21 +94,21 @@ def main():
             sembako = Sembako
             kasir = PetugasKasir
             if menu == 1:
-                return sembako.lihat("lihat")
+                sembako.lihat("lihat")
             elif menu == 2:
-                return sembako.tambah("tambah")
+                sembako.tambah("tambah")
             elif menu == 3:
-                return sembako.ubah("ubah")
+                sembako.ubah("ubah")
             elif menu == 4:
-                return sembako.hapus("hapus")
+                sembako.hapus("hapus")
             elif menu == 5:
-                return kasir.lihat("lihat")
+                kasir.lihat("lihat")
             elif menu == 6:
-                return kasir.tambah("tambah")
+                kasir.tambah("tambah")
             elif menu == 7:
-                return kasir.hapus("hapus")
+                kasir.hapus("hapus")
             elif menu == 0:
-                break
+                main()
             else:
                 print("==input tidak valid!==")
 
@@ -129,21 +129,21 @@ def main():
             toko = Toko
             manager = Manager
             if menu == 1:
-                return toko.lihat("lihat")
+                toko.lihat("lihat")
             elif menu == 2:
-                return toko.tambah("tambah")
+                toko.tambah("tambah")
             elif menu == 3:
-                return toko.ubah("ubah")
+                toko.ubah("ubah")
             elif menu == 4:
-                return toko.hapus("hapus")
+                toko.hapus("hapus")
             elif menu == 5:
-                return manager.lihat("lihat")
+                manager.lihat("lihat")
             elif menu == 6:
-                return manager.tambah("tambah")
+                manager.tambah("tambah")
             elif menu == 7:
-                return manager.hapus("hapus")
+                manager.hapus("hapus")
             elif menu == 0:
-                break
+                main()
             else:
                 print("==input tidak valid!==")
     return False

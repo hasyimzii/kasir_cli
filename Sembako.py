@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 # connection & cursor database
 conn = mysql.connector.connect(
@@ -10,6 +11,8 @@ conn = mysql.connector.connect(
 )
 curs = conn.cursor()
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 class Sembako:
     def __init__(self):
@@ -19,8 +22,12 @@ class Sembako:
         query = "select * from sembako"
         curs.execute(query)
         sembako = curs.fetchall()
+
+        print("id | jenis | merk | harga | stok |")
         for i in sembako:
             print(i)
+        input()
+        clear()
 
     def tambah(self):
         print("tambah sembako")
@@ -33,7 +40,33 @@ class Sembako:
             jenis, merk, harga, stok)
         curs.execute(query)
         conn.commit()
-        print("Berhasil!")
+        print("Berhasil Menambah")
+        input()
+        clear()
+
+    def ubah(self):
+        print("ubah sembako")
+        idSembako = input("id sembako yang mau diubah : ")
+        query = "select * from sembako where idSembako = '{}'".format(idSembako)
+        curs.execute(query)
+        sembako = curs.fetchall()
+
+        print("id : " + str(sembako[0][0]))
+        print("jenis : " + str(sembako[0][1]))
+        print("merk : " + str(sembako[0][2]))
+        print("harga : " + str(sembako[0][3]))
+        print("stok : " + str(sembako[0][4]))
+        print()
+
+        harga = input("harga baru : ")
+        stok = input("stok baru : ")
+
+        query1 = "update sembako set harga = '{}', stok = '{}' where idSembako = '{}'".format(harga, stok, idSembako)
+        curs.execute(query1)
+        conn.commit()
+        print("Berhasil Mengubah")
+        input()
+        clear()
 
     def hapus(self):
         print("hapus sembako")
@@ -43,6 +76,6 @@ class Sembako:
         curs.execute(query)
         conn.commit()
         print("Berhasil Menghapus")
+        input()
+        clear()
 
-    def ubah(self):
-        print("ubah sembako")
