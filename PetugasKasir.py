@@ -26,13 +26,15 @@ class PetugasKasir(User):
         query = "select * from user where jabatan = 'petugas kasir'"
         curs.execute(query)
         user = curs.fetchall()
+
+        print("| id | username | password ")
         for i in user:
             print(i)
 
     def tambah(self):
         print("tambah kasir")
-        username = str(input("nama : "))
-        password = str(input("nama : "))
+        username = str(input("username : "))
+        password = str(input("password : "))
 
         query = "insert into user values('','{}','{}','petugas kasir')".format(
             username, password)

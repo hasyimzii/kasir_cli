@@ -25,6 +25,8 @@ class Toko:
         query = "select * from toko"
         curs.execute(query)
         toko = curs.fetchall()
+
+        print("| id | alamat |")
         for i in toko:
             print(i)
 

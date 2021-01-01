@@ -25,7 +25,7 @@ class Sembako:
         curs.execute(query)
         sembako = curs.fetchall()
 
-        print("id | jenis | merk | harga | stok |")
+        print("| id | jenis | merk | harga | stok |")
         for i in sembako:
             print(i)
         input()
