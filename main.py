@@ -84,6 +84,7 @@ def main():
         while True:
             print("[1] lihat data transaksi")
             print("[2] tambah data transaksi")
+            print("[3] lihat data penjualan")
             print("[0] keluar")
 
             menu = int(input("Masukkan pilihan>"))
@@ -113,6 +114,8 @@ def main():
                 order.tambah("tambah", idTransaksi[0][0])
                 order.lihat("lihat", idTransaksi[0][0])
 
+            elif menu == 3:
+                transaksi.penjualan("penjualan")
             elif menu == 0:
                 main()
             else:

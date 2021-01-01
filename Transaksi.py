@@ -40,3 +40,17 @@ class Transaksi :
         query = "insert into transaksi values(Null,'{}','{}')".format(tanggal, idUser)
         curs.execute(query)
         conn.commit()
+
+    def penjualan(self):
+        query = "select sum(sembako.harga * order_transaksi.jumlahSembako) from sembako inner join order_transaksi on sembako.idSembako = order_transaksi.idSembako inner join transaksi on order_transaksi.idTransaksi = transaksi.idTransaksi where month(transaksi.tanggal) = month(CURDATE())"
+        curs.execute(query)
+        bulan = curs.fetchall()
+
+        query1 = "select sum(sembako.harga * order_transaksi.jumlahSembako) from sembako inner join order_transaksi on sembako.idSembako = order_transaksi.idSembako inner join transaksi on order_transaksi.idTransaksi = transaksi.idTransaksi where year(transaksi.tanggal) = year(CURDATE())"
+        curs.execute(query1)
+        tahun = curs.fetchall()
+
+        print("penjualan bulan ini :", str(int(bulan[0][0])))
+        print("penjualan tahun ini :", str(int(tahun[0][0])))
+        input()
+        clear()
