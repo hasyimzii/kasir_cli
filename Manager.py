@@ -1,15 +1,20 @@
 import mysql.connector
 
 # connection & cursor database
-connection = mysql.connector.connect(
+conn = mysql.connector.connect(
     host="localhost",
+    port=3306,
     user="root",
     password="",
     database="pbo_sembako"
 )
-curs = connection.cursor()
+curs = conn.cursor()
+
 
 class Manager(User):
+    def __init__(self):
+        pass
+
     def lihat(self):
         print("lihat manager")
         query = "select * from user where jabatan = 'manager'"
@@ -26,7 +31,7 @@ class Manager(User):
         query = "insert into user values('','{}','{}','manager')".format(
             username, password)
         curs.execute(query)
-        curs.commit()
+        conn.commit()
         print("Berhasil Menambah")
 
     def hapus(self):
@@ -35,5 +40,5 @@ class Manager(User):
 
         query = "delete from user where username = {}".format(username)
         curs.execute(query)
-        curs.commit()
+        conn.commit()
         print("Berhasil Menghapus")

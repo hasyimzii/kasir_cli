@@ -10,6 +10,7 @@ conn = mysql.connector.connect(
 )
 curs = conn.cursor()
 
+
 class Sembako:
     def __init__(self):
         pass
@@ -28,7 +29,8 @@ class Sembako:
         harga = str(input("harga : "))
         stok = str(input("stok : "))
 
-        query = "insert into sembako values(Null,'{}','{}','{}','{}')".format(jenis, merk, harga, stok)
+        query = "insert into sembako values(Null,'{}','{}','{}','{}')".format(
+            jenis, merk, harga, stok)
         curs.execute(query)
         conn.commit()
         print("Berhasil!")

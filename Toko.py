@@ -10,6 +10,7 @@ conn = mysql.connector.connect(
 )
 curs = conn.cursor()
 
+
 class Toko:
     def __init__(self):
         pass
@@ -28,7 +29,7 @@ class Toko:
 
         query = "insert into toko values('','{}')".format(alamat)
         curs.execute(query)
-        curs.commit()
+        conn.commit()
         print("Berhasil Menambah")
 
     def hapus(self):
@@ -37,5 +38,5 @@ class Toko:
 
         query = "delete from toko where idToko = {}".format(idToko)
         curs.execute(query)
-        curs.commit()
+        conn.commit()
         print("Berhasil Menghapus")
