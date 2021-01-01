@@ -27,7 +27,7 @@ class Manager(User):
         curs.execute(query)
         user = curs.fetchall()
 
-        print("| id | username | password |")
+        print("| id | username | password | id toko |")
         for i in user:
             print(i)
         input()
@@ -35,11 +35,11 @@ class Manager(User):
 
     def tambah(self):
         print("tambah manager")
-        username = str(input("username : "))
-        password = str(input("password : "))
+        username = input("username : ")
+        password = input("password : ")
+        idToko = input("idToko : ")
 
-        query = "insert into user values('','{}','{}','manager')".format(
-            username, password)
+        query = "insert into user values('','{}','{}','manager', '{}')".format(username, password, idToko)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menambah")

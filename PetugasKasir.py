@@ -27,7 +27,7 @@ class PetugasKasir(User):
         curs.execute(query)
         user = curs.fetchall()
 
-        print("| id | username | password |")
+        print("| id | username | password | id toko |")
         for i in user:
             print(i)
         input()
@@ -35,10 +35,11 @@ class PetugasKasir(User):
 
     def tambah(self):
         print("tambah kasir")
-        username = str(input("username : "))
-        password = str(input("password : "))
+        username = input("username : ")
+        password = input("password : ")
+        idToko = input("idToko : ")
 
-        query = "insert into user values('','{}','{}','petugas kasir')".format(username, password)
+        query = "insert into user values('','{}','{}','petugas kasir', '{}')".format(username, password, idToko)
         curs.execute(query)
         conn.commit()
         print("Berhasil Menambah")

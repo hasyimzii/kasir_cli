@@ -34,7 +34,7 @@ class Toko:
 
     def tambah(self):
         print("tambah toko")
-        alamat = str(input("alamat : "))
+        alamat = input("alamat : ")
 
         query = "insert into toko values('','{}')".format(alamat)
         curs.execute(query)

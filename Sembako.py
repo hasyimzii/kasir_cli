@@ -33,10 +33,10 @@ class Sembako:
 
     def tambah(self):
         print("tambah sembako")
-        jenis = str(input("jenis : "))
-        merk = str(input("merk : "))
-        harga = str(input("harga : "))
-        stok = str(input("stok : "))
+        jenis = input("jenis : ")
+        merk = input("merk : ")
+        harga = input("harga : ")
+        stok = input("stok : ")
 
         query = "insert into sembako values(Null,'{}','{}','{}','{}')".format(
             jenis, merk, harga, stok)

@@ -4,6 +4,7 @@ from Sembako import Sembako
 from Manager import Manager
 from PetugasKasir import PetugasKasir
 from Toko import Toko
+from Transaksi import Transaksi
 
 # connection & cursor database
 conn = mysql.connector.connect(
@@ -80,34 +81,18 @@ def main():
 
     elif(id[1] == "petugas kasir"):
         while True:
-            print("[1] lihat data sembako")
-            print("[2] tambah data sembako")
-            print("[3] ubah data sembako")
-            print("[4] hapus data sembako")
-            print("[5] lihat data kasir")
-            print("[6] tambah data kasir")
-            print("[7] hapus data kasir")
+            print("[1] lihat data transaksi")
+            print("[2] tambah data transaksi")
             print("[0] keluar")
 
             menu = int(input("Masukkan pilihan>"))
             clear()
 
-            sembako = Sembako
-            kasir = PetugasKasir
+            transaksi = Transaksi
             if menu == 1:
-                sembako.lihat("lihat")
+                transaksi.lihat("lihat")
             elif menu == 2:
-                sembako.tambah("tambah")
-            elif menu == 3:
-                sembako.ubah("ubah")
-            elif menu == 4:
-                sembako.hapus("hapus")
-            elif menu == 5:
-                kasir.lihat("lihat")
-            elif menu == 6:
-                kasir.tambah("tambah")
-            elif menu == 7:
-                kasir.hapus("hapus")
+                transaksi.tambah("tambah", id[0])
             elif menu == 0:
                 main()
             else:

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2021 at 05:10 PM
+-- Generation Time: Jan 01, 2021 at 07:33 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `order_transaksi` (
   `idOrder` int(11) NOT NULL,
+  `idTransaksi` int(11) NOT NULL,
   `idSembako` int(11) NOT NULL,
   `jumlahSembako` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -53,7 +54,8 @@ CREATE TABLE `sembako` (
 --
 
 INSERT INTO `sembako` (`idSembako`, `jenis`, `merk`, `harga`, `stok`) VALUES
-(1, 'beras', 'ambon', 10000, 5);
+(1, 'beras', 'ambon', 11000, 10),
+(3, 'minyak', 'bimoli', 7000, 2);
 
 -- --------------------------------------------------------
 
@@ -66,6 +68,13 @@ CREATE TABLE `toko` (
   `alamat` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `toko`
+--
+
+INSERT INTO `toko` (`idToko`, `alamat`) VALUES
+(1, 'jalan mangga 5, kota mojokerto');
+
 -- --------------------------------------------------------
 
 --
@@ -75,9 +84,7 @@ CREATE TABLE `toko` (
 CREATE TABLE `transaksi` (
   `idTransaksi` int(11) NOT NULL,
   `tanggal` datetime NOT NULL,
-  `idUser` int(11) NOT NULL,
-  `idOrder` int(11) NOT NULL,
-  `idToko` int(11) NOT NULL
+  `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -90,16 +97,9 @@ CREATE TABLE `user` (
   `idUser` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `jabatan` enum('manager','petugas kasir') NOT NULL
+  `jabatan` enum('manager','petugas kasir') NOT NULL,
+  `idToko` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`idUser`, `username`, `password`, `jabatan`) VALUES
-(1, 'manager', '123123', 'manager'),
-(2, 'kasir1', '123123', 'petugas kasir');
 
 --
 -- Indexes for dumped tables
@@ -110,7 +110,8 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `jabatan`) VALUES
 --
 ALTER TABLE `order_transaksi`
   ADD PRIMARY KEY (`idOrder`),
-  ADD KEY `order-sembako` (`idSembako`);
+  ADD KEY `order-sembako` (`idSembako`),
+  ADD KEY `order-transaksi` (`idTransaksi`);
 
 --
 -- Indexes for table `sembako`
@@ -129,15 +130,14 @@ ALTER TABLE `toko`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`idTransaksi`),
-  ADD KEY `transaksi-user` (`idUser`),
-  ADD KEY `transaksi-order` (`idOrder`),
-  ADD KEY `transaksi-toko` (`idToko`);
+  ADD KEY `transaksi-user` (`idUser`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`idUser`);
+  ADD PRIMARY KEY (`idUser`),
+  ADD KEY `user-toko` (`idToko`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -153,13 +153,13 @@ ALTER TABLE `order_transaksi`
 -- AUTO_INCREMENT for table `sembako`
 --
 ALTER TABLE `sembako`
-  MODIFY `idSembako` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idSembako` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-  MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -171,7 +171,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -181,15 +181,20 @@ ALTER TABLE `user`
 -- Constraints for table `order_transaksi`
 --
 ALTER TABLE `order_transaksi`
-  ADD CONSTRAINT `order-sembako` FOREIGN KEY (`idSembako`) REFERENCES `sembako` (`idSembako`);
+  ADD CONSTRAINT `order-sembako` FOREIGN KEY (`idSembako`) REFERENCES `sembako` (`idSembako`),
+  ADD CONSTRAINT `order-transaksi` FOREIGN KEY (`idTransaksi`) REFERENCES `transaksi` (`idTransaksi`);
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi-order` FOREIGN KEY (`idOrder`) REFERENCES `order_transaksi` (`idOrder`),
-  ADD CONSTRAINT `transaksi-toko` FOREIGN KEY (`idToko`) REFERENCES `toko` (`idToko`),
   ADD CONSTRAINT `transaksi-user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user-toko` FOREIGN KEY (`idToko`) REFERENCES `toko` (`idToko`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
