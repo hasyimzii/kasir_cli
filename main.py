@@ -1,7 +1,7 @@
 import mysql.connector
 import os
-from Manager import *
-from Sembako import *
+from Manager import Manager
+from Sembako import Sembako
 
 #connection & cursor database
 connection = mysql.connector.connect(
@@ -59,9 +59,9 @@ def main() :
         # elif masukan == 7 :
         # elif masukan == 8 :
         elif masukan == 0 :
-            pass
+            clear()
 
     elif(id[1] == "petugas kasir") :
         print("kasir")
-
+    return False
 main()
