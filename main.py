@@ -41,6 +41,7 @@ def login():
             return data[0]
         except:
             print("username atau password yang anda masukan salah")
+            main()
 
 
 def main():
@@ -152,7 +153,5 @@ def main():
                 main()
             else:
                 print("==input tidak valid!==")
-    return False
-
 
 main()
