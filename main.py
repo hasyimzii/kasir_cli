@@ -1,6 +1,7 @@
 import mysql.connector
 import os
 from Sembako import Sembako
+from Pemilik import Pemilik
 from Manager import Manager
 from PetugasKasir import PetugasKasir
 from Toko import Toko
@@ -32,7 +33,9 @@ def login():
     curs.execute(query)
     data = curs.fetchall()
 
-    if(username == "pemilik" and password == "123123"):
+    pemilik = Pemilik("pemilik", "123123")
+
+    if(username == pemilik.getUser() and password == pemilik.getPass()):
         clear()
         return "pemilik"
     else:
