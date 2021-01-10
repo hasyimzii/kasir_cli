@@ -48,6 +48,13 @@ class Sembako:
 
     def ubah(self):
         print("ubah sembako")
+        query = "select * from sembako"
+        curs.execute(query)
+        sembako = curs.fetchall()
+
+        print("| id | jenis | merk | harga | stok |")
+        for i in sembako:
+            print(i)
         idSembako = input("id sembako yang mau diubah : ")
         query = "select * from sembako where idSembako = '{}'".format(
             idSembako)
